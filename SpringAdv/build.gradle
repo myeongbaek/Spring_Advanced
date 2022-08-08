@@ -1,6 +1,6 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.2'
-    id 'io.spring.dependency-management' version '1.0.12.RELEASE'
+    id 'org.springframework.boot' version '2.5.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
 
@@ -26,8 +26,26 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.12.3'
+    implementation 'org.json:json:20210307'
+
+    // 스프링 시큐리티
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // Thymeleaf (뷰 템플릿 엔진)
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // Thymeleaf 에서 springsecurity 의존성 설정
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    ///////////////////////////////////////////////////////////////////////
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+    //jsno webtoken
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
 }

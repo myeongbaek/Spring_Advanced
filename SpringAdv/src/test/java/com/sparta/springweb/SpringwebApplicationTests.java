@@ -1,10 +1,10 @@
-package com.sparta.springadv;
+package com.sparta.springweb;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringAdvApplicationTests {
+class SpringwebApplicationTests {
 
     @Test
     void contextLoads() {
