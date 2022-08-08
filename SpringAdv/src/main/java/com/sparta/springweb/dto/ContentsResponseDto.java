@@ -13,6 +13,9 @@ public class ContentsResponseDto {
     private String title;
     private String name;
     private String contents;
+
+    private Integer likes;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private final LocalDateTime modifiedAt;
     private int countReply;
@@ -23,6 +26,7 @@ public class ContentsResponseDto {
         this.title = content.getTitle();
         this.name = content.getName();
         this.contents = content.getContents();
+        this.likes = content.getLikes();
         this.modifiedAt = content.getModifiedAt();
         this.countReply = countReply;
     }

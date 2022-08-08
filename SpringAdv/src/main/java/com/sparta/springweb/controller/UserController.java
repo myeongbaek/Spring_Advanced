@@ -62,6 +62,7 @@ public class UserController {
     @GetMapping("/api/userCheck")
     public String userCheck(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         if (userDetails != null) {
+            System.out.println(userDetails);
             return userDetails.getUser().getUsername();
         }
         return "";

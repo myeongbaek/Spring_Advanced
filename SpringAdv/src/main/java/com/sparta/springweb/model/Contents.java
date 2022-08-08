@@ -26,10 +26,20 @@ public class Contents extends Timestamped {
     @Column(nullable = false)
     private String contents;
 
+    @Column(nullable = false)
+    private Integer likes;
+
+
     public Contents(String title, String username, String contents) {
         this.title = title;
         this.name = username;
         this.contents = contents;
+    }
+    public Contents(String title, String username, String contents, Integer likes) {
+        this.title = title;
+        this.name = username;
+        this.contents = contents;
+        this.likes = likes;
     }
 
     public Contents(ContentsRequestDto requestDto) {
@@ -42,6 +52,7 @@ public class Contents extends Timestamped {
         this.title = requestDto.getTitle();
         this.name = username;
         this.contents = requestDto.getContents();
+        this.likes = requestDto.getLikes();
     }
 
     public void update(ContentsRequestDto requestDto) {
