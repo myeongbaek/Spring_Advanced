@@ -31,20 +31,21 @@
                         let name = post.name;
                         let title = post.title;
                         let contents = post.contents;
+                        let likes = post.likes;
                         let modifiedAt = post.modifiedAt;
                         let countReply = post.countReply;
-                        addHTML(id, name, title, contents, modifiedAt, countReply);
+                        addHTML(id, name, title, contents, likes, modifiedAt, countReply);
                     }
                 }
             });
         }
 
-        function addHTML(id, name, title, contents, modifiedAt, countReply) {
-            let tempHtml = makeMessage(id, name, title, contents, modifiedAt, countReply);
+        function addHTML(id, name, title, contents, likes, modifiedAt, countReply) {
+            let tempHtml = makeMessage(id, name, title, contents, likes, modifiedAt, countReply);
             $('#cards-box').append(tempHtml);
         }
 
-        function makeMessage(id, name, title, contents, modifiedAt, countReply) {
+        function makeMessage(id, name, title, contents, likes, modifiedAt, countReply) {
             return `<a href="detail.html?id=${id}">
                         <div class="card">
                             <div class="metadata">
@@ -59,9 +60,15 @@
                             <div class="contents" id="${id}-contents" >
                                ${contents}
                             </div>
-                            <div class="countReply">
-                            댓글 : ${countReply}
+                            <div>
+                                <div class="likes">
+                                좋아요 : ${likes}
+                                </div>
+                                <div class="countReply">
+                                댓글 : ${countReply}
+                                </div>
                             </div>
+
                          </a>
 
                         </div>`;
@@ -227,9 +234,16 @@
         }
 
         .countReply {
+            display: inline-block;
             padding: 5px 20px;
             color: #BD63AB;
-            text-align: right;
+            float: right;
+        }
+
+        .likes {
+            display: inline-block;
+            padding: 5px 20px;
+            color: #BD63AB;
         }
 
         .contents div.edit {
