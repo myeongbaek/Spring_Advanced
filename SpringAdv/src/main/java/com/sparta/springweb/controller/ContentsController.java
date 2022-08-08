@@ -31,9 +31,8 @@ public class ContentsController {
     // 게시글 디테일 조회
     @GetMapping("/api/contents/{id}")
     public Contents getContents(@PathVariable Long id) {
-        Contents contents =  ContentsRepository.findById(id).orElseThrow(
+        return ContentsRepository.findById(id).orElseThrow(
                 ()->new IllegalArgumentException("id가 존재하지 않습니다."));
-        return contents;
     }
 
     // 게시글 작성
@@ -41,8 +40,7 @@ public class ContentsController {
     public Contents createContents(@RequestBody ContentsRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         // 로그인 되어 있는 ID의 username
         String username = userDetails.getUser().getUsername();
-        Contents contents = ContentsService.createContents(requestDto, username);
-        return contents;
+        return ContentsService.createContents(requestDto, username);
     }
 
     // 게시글 수정

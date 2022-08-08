@@ -7,4 +7,5 @@ public class ContentsRequestDto {
     private String title;
     private String name;
     private String contents;
+    private Integer likes;
 }

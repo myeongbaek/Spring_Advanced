@@ -52,6 +52,7 @@ public class Contents extends Timestamped {
         this.title = requestDto.getTitle();
         this.name = username;
         this.contents = requestDto.getContents();
+        this.likes = requestDto.getLikes();
     }
 
     public void update(ContentsRequestDto requestDto) {
