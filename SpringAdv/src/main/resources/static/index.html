@@ -18,6 +18,7 @@
             getMessages();
         })
 
+
         function getMessages() {
             $('#cards-box').empty();
             $.ajax({
@@ -46,8 +47,7 @@
         }
 
         function makeMessage(id, name, title, contents, likes, modifiedAt, countReply) {
-            return `<a href="detail.html?id=${id}">
-                        <div class="card">
+            return `<div class="card">
                             <div class="metadata">
                                <div id="${id}-name" class="name">
                                    ${name}
@@ -61,17 +61,53 @@
                                ${contents}
                             </div>
                             <div>
-                                <div class="likes">
-                                좋아요 : ${likes}
+                                <div class="likes" id="${id}-likes" onclick="heartOn(${id})">
+                                    좋아요 : ${likes}
                                 </div>
                                 <div class="countReply">
-                                댓글 : ${countReply}
+                                    <a href="detail.html?id=${id}">
+                                    댓글 : ${countReply} 댓글쓰기
+                                    </a>
                                 </div>
                             </div>
 
-                         </a>
+
 
                         </div>`;
+        }
+
+        function heartOn(id){
+            let heart = $(`#${id}-likes`);
+            heart.css('color','red');
+
+            let likes = parseInt(heart.text().trim().slice(6,)) + 1;
+            heart.text('좋아요 : ' + likes.toString());
+            heart.attr("onclick", `heartOff(${id})`);
+
+            $.ajax({
+                type: "PUT",
+                url: `/api/heartplus/${id}`,
+                data: {},
+                success: function () {
+                }
+            });
+        }
+
+        function heartOff(id){
+            let heart = $(`#${id}-likes`);
+            heart.css('color','black');
+
+            let likes = parseInt(heart.text().trim().slice(6,)) - 1;
+            heart.text('좋아요 : ' + likes.toString());
+            heart.attr("onclick", `heartOn(${id})`)
+
+            $.ajax({
+                type: "PUT",
+                url: `/api/heartminus/${id}`,
+                data: {},
+                success: function () {
+                }
+            });
         }
 
     </script>
@@ -243,7 +279,7 @@
         .likes {
             display: inline-block;
             padding: 5px 20px;
-            color: #BD63AB;
+            color: black;
         }
 
         .contents div.edit {
