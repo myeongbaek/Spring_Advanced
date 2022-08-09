@@ -48,6 +48,15 @@ public class ContentsService {
         return Contents.getId();
     }
 
+    @Transactional
+    public Long updateHeart(Long id, Integer n){
+        Contents contents = ContentsRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
+        );
+        contents.updateHeart(n);
+        return id;
+    }
+
 //    public List<Contents> getContents() {
 //        List<Contents> contents =  ContentsRepository.findAllByOrderByCreatedAtDesc();
 //        return contents;
@@ -68,4 +77,7 @@ public class ContentsService {
         }
         return listContents;
     }
+
+
+
 }

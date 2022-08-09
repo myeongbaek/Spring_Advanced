@@ -61,7 +61,7 @@
                                ${contents}
                             </div>
                             <div>
-                                <div class="likes" id="${id}-likes" onclick="heart(${id})">
+                                <div class="likes" id="${id}-likes" onclick="heartOn(${id})">
                                     좋아요 : ${likes}
                                 </div>
                                 <div class="countReply">
@@ -76,24 +76,38 @@
                         </div>`;
         }
 
-        function heart(id){
+        function heartOn(id){
             let heart = $(`#${id}-likes`);
             heart.css('color','red');
 
             let likes = parseInt(heart.text().trim().slice(6,)) + 1;
-            console.log(likes);
             heart.text('좋아요 : ' + likes.toString());
-            heart.attr("onclick", `heartBack(${id})`);
+            heart.attr("onclick", `heartOff(${id})`);
+
+            $.ajax({
+                type: "PUT",
+                url: `/api/heartplus/${id}`,
+                data: {},
+                success: function () {
+                }
+            });
         }
 
-        function heartBack(id){
+        function heartOff(id){
             let heart = $(`#${id}-likes`);
             heart.css('color','black');
 
             let likes = parseInt(heart.text().trim().slice(6,)) - 1;
-            console.log(likes);
             heart.text('좋아요 : ' + likes.toString());
-            heart.attr("onclick", `heart(${id})`);
+            heart.attr("onclick", `heartOn(${id})`)
+
+            $.ajax({
+                type: "PUT",
+                url: `/api/heartminus/${id}`,
+                data: {},
+                success: function () {
+                }
+            });
         }
 
     </script>

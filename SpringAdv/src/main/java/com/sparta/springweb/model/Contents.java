@@ -66,4 +66,8 @@ public class Contents extends Timestamped {
         this.name = username;
         this.contents = contents;
     }
+
+    public void updateHeart(Integer n){
+        this.likes += n;
+    }
 }
