@@ -136,6 +136,7 @@
                             <textarea id="${id}-textarea" class="te-edit" name="" id="" cols="30" rows="5"></textarea>
                         </div>
                             <div class="footer ${hide}">
+                                <a href="bigreply.html?id=${id}" class="bigreply">답글 달기</span>
                                 <img id="${id}-edit" class="icon-start-edit" src="images/edit.png" alt="" onClick="editPost('${id}')">
                                 <img id="${id}-delete" class="icon-delete" src="images/delete.png" alt="" onClick="deleteReply('${id}')">
                                 <img id="${id}-submit" class="icon-end-edit" src="images/done.png" alt="" onClick="submitEdit('${id}')">
@@ -422,7 +423,10 @@
             height: 40px;
             top: 15px;
         }
-
+        .bigreply{
+            right: 55px;
+            width: 18px;
+        }
         .footer img.icon-start-edit {
             cursor: pointer;
             position: absolute;
